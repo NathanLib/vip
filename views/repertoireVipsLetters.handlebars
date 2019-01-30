@@ -1,0 +1,11 @@
+<h1> Cliquer sur une lettre</h1>
+
+<ul id="listFirstLetter">
+    {{#each firstLetter}}
+        <div>
+            <a href="/repertoire/{{this.letter}}">
+                <li>{{this.letter}}</li>
+            </a>
+        </div>
+    {{/each}}
+</ul>
