@@ -1,1 +1,11 @@
-<h1> Mettre ici la première lettre du nom des VIPs </h1>
+<h1> Cliquer sur une lettre</h1>
+
+<ul>
+    {{#each firstLetter}}
+        <div class="listFirstLetter">
+            <a href="#">
+                <li>{{this.letter}}</li>
+            </a>
+        </div>
+    {{/each}}
+</ul>

@@ -81,3 +81,12 @@ a  {
 .traitVertical {
   border-left: 1px white solid;
 }
+
+
+
+/* ------------------------------------------- */
+
+/* Page repertoirVups.handlebars */
+.listFirstLetter li {
+    display: inline;
+}
