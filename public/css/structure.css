@@ -87,6 +87,11 @@ a  {
 /* ------------------------------------------- */
 
 /* Page repertoirVups.handlebars */
-.listFirstLetter li {
-    display: inline;
+ul#listFirstLetter {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+}
+ul#listFirstLetter li {
+    margin: 0 5px;
 }
