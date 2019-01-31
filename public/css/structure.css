@@ -146,3 +146,15 @@ ul#listFirstLetter li {
 .listeArticleLiens li a, .listeArticleLiens li a:link, .listeArticleLiens li a:visited {
     color: black;
 }
+
+/* Page menuArticle.handlebars */
+.afficherArticle {
+    width: 800px;
+    float: left;
+    text-align: left;
+    padding: 0 10px;
+}
+.afficherArticle fieldset {
+    text-align: left;
+    border: solid black 1px;
+}

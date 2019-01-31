@@ -11,3 +11,15 @@ module.exports.listVips = function(callback) {
         }
     });
 }
+
+module.exports.getArticle = function(callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+            let sql = "";
+
+            //console.log(sql);
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+}

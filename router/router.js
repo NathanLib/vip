@@ -9,25 +9,27 @@ let TestController = require('./../controllers/TestController');
 // Routes
 module.exports = function(app){
 
-  // tests à supprimer
+    // tests à supprimer
     app.get('/test', TestController.Test);
 
-// Main Routes
+    // Main Routes
     app.get('/', HomeController.Index);
     app.get('/accueil', HomeController.Index);
 
-// VIP
+    // VIP
     app.get('/repertoire', VipController.Repertoire);
     app.get('/repertoire/:letter', VipController.DetailsLetter);
     app.get('/repertoire/vip/:number', VipController.DetailsVip);
 
-// albums
-   app.get('/album', AlbumController.ListerAlbum);
+    // albums
+    app.get('/album', AlbumController.ListerAlbum);
 
-// Articles
-app.get('/articles', ArticleController.Menu)
+    // Articles
+    app.get('/articles', ArticleController.Menu);
+    app.get('/articles/:number', ArticleController.AfficherArticle);
 
-// tout le reste
+
+    // tout le reste
     app.get('*', HomeController.NotFound);
     app.post('*', HomeController.NotFound);
 
