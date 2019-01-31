@@ -105,3 +105,44 @@ ul#listFirstLetter li {
     width: 125px;
     height: 175px;
 }
+
+/* Page repertoireVipsLetter.handlebars */
+.biographieVIP {
+    text-align: left;
+}
+.biographieVIP img {
+    width: 150px;
+    height: 200px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+.allPhotosVip {
+    margin: 30px 0;
+}
+.allPhotosVip img {
+    height: 125px;
+    width: auto;
+}
+
+/* Page articleListe.handlebars */
+.listeArticle {
+    width: 225px;
+    border-radius: 8px 8px 0 0;
+    float: right;
+}
+.listeArticleImg {
+    background-color: black;
+    border-radius: 8px 8px 0 0;
+    padding: 5px 0;
+}
+.listeArticleLiens {
+    border: solid black 1px;
+}
+.listeArticleLiens ul {
+    list-style-type: none;
+    padding: 0;
+}
+.listeArticleLiens li a, .listeArticleLiens li a:link, .listeArticleLiens li a:visited {
+    color: black;
+}

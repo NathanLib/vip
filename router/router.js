@@ -1,6 +1,7 @@
 let HomeController = require('./../controllers/HomeController');
 let VipController = require('./../controllers/VipController');
 let AlbumController = require('./../controllers/AlbumController');
+let ArticleController = require('./../controllers/ArticleController');
 let TestController = require('./../controllers/TestController');
 
 
@@ -18,10 +19,13 @@ module.exports = function(app){
 // VIP
     app.get('/repertoire', VipController.Repertoire);
     app.get('/repertoire/:letter', VipController.DetailsLetter);
-    app.get('/repertoire/vip/:number', VipController.DetailsLetter);
+    app.get('/repertoire/vip/:number', VipController.DetailsVip);
 
- // albums
+// albums
    app.get('/album', AlbumController.ListerAlbum);
+
+// Articles
+app.get('/articles', ArticleController.Menu)
 
 // tout le reste
     app.get('*', HomeController.NotFound);

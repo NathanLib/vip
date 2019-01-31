@@ -1,0 +1,54 @@
+{{> repertoireListe}}
+
+<div class="biographieVIP">
+    <img src="/images/vip/{{photo.PHOTO_ADRESSE}}" alt="photo n° {{photo.PHOTO_ADRESSE}}">
+
+    <p>
+        <b>Nom :</b>
+        {{identityDetailsVip.VIP_NOM}} {{identityDetailsVip.VIP_PRENOM}}
+    </p>
+    <p>
+        <b>Date de naissance :</b>
+        {{identityDetailsVip.VIP_NAISSANCE}}
+    </p>
+    <p>
+        <b>Nationalité :</b>
+        {{nationaliteVip.NATIONALITE_NOM}}
+    </p>
+
+    {{#each mariageVip}}
+    <p>
+        <b>Mariage :</b>
+        {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+        ({{this.DATE_EVENEMENT}}{{#if this.MARIAGE_FIN}} --> {{this.MARIAGE_FIN}} {{/if}})
+        <b>Lieu :</b>
+        {{this.MARIAGE_LIEU}}
+    </p>
+    {{/each}}
+
+    {{#each liaisonVip}}
+    <p>
+        <b>Liaison :</b>
+        {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+        ({{this.DATE_EVENEMENT}})
+        <b>Raison fin liaison :</b>
+        {{this.LIAISON_MOTIFFIN}}
+    </p>
+    {{/each}}
+
+    <p>
+        <b>Qui suis-je ? :</b>
+        {{identityDetailsVip.VIP_TEXTE}}
+    </p>
+
+    <div class="allPhotosVip">
+        {{#each photosVip}}
+        {{#ifCond this.PHOTO_NUMERO '!==' 1}}
+        <a href="/images/vip/{{this.PHOTO_ADRESSE}}" data-lightbox="photosVip" data-title="<p><span style:'font-size:large'>{{this.PHOTO_SUJET}}</span> - {{this.PHOTO_COMMENTAIRE}}</p>">
+            <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="photo n° {{this.PHOTO_NUMERO}}">
+        </a>
+        {{/ifCond}}
+        {{/each}}
+    </div>
+
+</div>

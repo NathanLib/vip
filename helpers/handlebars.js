@@ -63,33 +63,36 @@ function hbsHelpers(handlebars) {
                 }); // fin moment
                 return moment(date).format(format);
             },
+
             /* Exemple d'utilisation :
             {{#ifCond  this.vil_num '<' 10}}
-               plus petit
-             {{else}}
-               plus grand
+            plus petit
+            {{else}}
+            plus grand
             {{/ifCond}} */
             ifCond : function (v1, operator, v2, options) {
 
                 switch (operator) {
                     case '==':
-                        return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 == v2) ? options.fn(this) : options.inverse(this);
                     case '===':
-                        return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                    case '!==':
+                    return (v1 !== v2) ? options.fn(this) : options.inverse(this);
                     case '<':
-                        return (v1 < v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 < v2) ? options.fn(this) : options.inverse(this);
                     case '<=':
-                        return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 <= v2) ? options.fn(this) : options.inverse(this);
                     case '>':
-                        return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 > v2) ? options.fn(this) : options.inverse(this);
                     case '>=':
-                        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 >= v2) ? options.fn(this) : options.inverse(this);
                     case '&&':
-                        return (v1 && v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 && v2) ? options.fn(this) : options.inverse(this);
                     case '||':
-                        return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                    return (v1 || v2) ? options.fn(this) : options.inverse(this);
                     default:
-                        return options.inverse(this);
+                    return options.inverse(this);
                 }
             }
         }
