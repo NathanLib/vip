@@ -86,7 +86,7 @@ a  {
 
 /* ------------------------------------------- */
 
-/* Page repertoirVups.handlebars */
+/* Page repertoirVips.handlebars */
 ul#listFirstLetter {
     display: inline-flex;
     list-style: none;
@@ -94,4 +94,14 @@ ul#listFirstLetter {
 }
 ul#listFirstLetter li {
     margin: 0 5px;
+}
+
+/* Page repertoireVipsLetter.handlebars */
+.displayListVip {
+    display:inline-block;
+    padding: 0 25px;
+}
+.displayListVip img {
+    width: 125px;
+    height: 175px;
 }

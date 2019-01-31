@@ -12,25 +12,23 @@ module.exports.test = function(callback) {
     });
 };
 
-module.exports.Repertoire = function(callback) {
+module.exports.listLetter = function(callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            let sql = "SELECT DISTINCT LEFT(VIP_NOM,1) AS letter FROM vip ORDER BY letter;";
+            let sql = "SELECT DISTINCT LEFT(VIP_NOM,1) AS letterSql FROM vip ORDER BY letterSql;";
 
-            console.log(sql);
+            //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
         }
     });
 }
 
-module.exports.DetailsLetter = function(letter, callback) {
+module.exports.resultLetter = function(letter, callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT VIP_NOM, VIP_PRENOM, PHOTO_ADRESSE AS PHOTO FROM vip v " +
-                "JOIN photo p ON v.VIP_NUMERO=p.VIP_NUMERO" +
-                "WHERE LEFT(VIP_NOM,1)='"+letter+"' AND PHOTO_NUMERO=1 ORDER BY VIP_NOM;";
-            console.log(sql);
+            let sql = "SELECT v.VIP_NUMERO as numero ,PHOTO_NUMERO,VIP_NOM as nom, VIP_PRENOM as prenom, PHOTO_ADRESSE as photo FROM vip v join photo p ON v.VIP_NUMERO=p.VIP_NUMERO WHERE VIP_NOM like '"+letter+"%' AND PHOTO_NUMERO=1;";
+            //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
         }

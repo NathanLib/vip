@@ -1,0 +1,11 @@
+<span><b> Cliquer sur une lettre :</b></span>
+
+<ul id="listFirstLetter">
+    {{#each letter}}
+        <div>
+            <a href="/repertoire/{{this.letterSql}}">
+                <li>{{this.letterSql}}</li>
+            </a>
+        </div>
+    {{/each}}
+</ul>

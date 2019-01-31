@@ -1,31 +1,73 @@
 let model = require("../models/vip.js");
+//let photo = require("../models/photo");
+let async = require("async");
 
 // ///////////////////////// R E P E R T O I R E    D E S     S T A R S
 
-module.exports.Repertoire = 	function(request, response){
-   response.title = 'Répertoire des stars';
+module.exports.Repertoire = function(request, response){
+    response.title = 'Répertoire des stars';
 
-    model.Repertoire(function(err, result){
+    model.listLetter(function(err, result){
         if (err) {
             console.log(err);
             return;
         }
 
-        response.firstLetter = result;
+        response.letter = result;
         response.render('repertoireVips', response);
     } );
 }
 
 module.exports.DetailsLetter = 	function(request, response){
-    response.title = 'Détail des stars';
-    let data = request.params.letter;
-    model.Repertoire(function(err, result){
+    response.title = 'Liste des vip commençant pas la même lettre';
+    let letter = request.params.letter;
+
+    async.parallel([
+        function(callback){
+            model.listLetter(function(err,result) {callback(null, result)});
+        },
+
+        function(callback){
+            model.resultLetter(letter, function(err,result) {callback(null, result)});
+        }
+    ],
+
+    function(err, result){
         if (err) {
             console.log(err);
             return;
         }
 
-        response.vips = result;
-        response.render('repertoireVips', response);
-    } );
+        response.letter = result[0];
+        response.vips = result[1];
+        response.render('repertoireVipsLetter', response);
+    }
+);
+}
+
+module.exports.DetailsVip = function(request, response){
+    response.title = 'Liste des vip commençant pas la même lettre';
+    let letter = request.params.letter;
+
+    async.parallel([
+        function(callback){
+            model.listLetter(function(err,result) {callback(null, result)});
+        },
+
+        function(callback){
+            model.resultLetter(letter, function(err,result) {callback(null, result)});
+        }
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.letter = result[0];
+        response.vips = result[1];
+        response.render('repertoireVipsLetter', response);
+    }
+);
 }
