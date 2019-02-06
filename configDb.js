@@ -12,6 +12,7 @@ let pool  = mysql.createPool({
   host     : 'localhost',
   user     : 'bd',
   password : 'bede',
+  dateStrings : 'true',
   database : 'vip',
   port : "3306"
 });

@@ -1,0 +1,23 @@
+<h1> Album photo des stars </h1>
+
+{{> albumListe}}
+
+{{#each details}}
+<div class="afficherAlbumVip">
+    <div class="afficherPhotoAlbumVip">
+        <p>{{this.VIP_PRENOM}} {{this.VIP_NOM}}</p>
+
+        <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo du vip">
+    </div>
+
+    <div class="afficherCommentaireAlbumVip">
+        <form class="" action="" method="">
+            <fieldset>
+                <legend>Commentaire</legend>
+
+                <p>{{this.PHOTO_COMMENTAIRE}}</p>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{{/each}}

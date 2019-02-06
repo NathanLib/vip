@@ -63,7 +63,8 @@ body {
 .baniere{float:left;
   margin-top:20px;
   margin-left:5px;
-  border:none;}
+  border:none;
+}
 .baniere img{
   border:none;
 }
@@ -82,6 +83,48 @@ a  {
   border-left: 1px white solid;
 }
 
+.tooltip
+{
+  text-decoration:none;
+  position:relative;
+}
+
+
+.tooltip span
+{
+  display:none;
+
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  color:black;
+  background:white;
+}
+
+
+.tooltip span img
+{
+  float:left;
+  margin:0px 8px 8px 0;
+}
+
+
+.tooltip:hover span
+{
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1000;
+  width:auto;
+  min-width:700px;
+  min-height:128px;
+  border:1px solid black;
+  margin-top:12px;
+  margin-left:32px;
+  overflow:hidden;
+  padding:8px;
+}
 
 
 /* ------------------------------------------- */
@@ -149,12 +192,59 @@ ul#listFirstLetter li {
 
 /* Page menuArticle.handlebars */
 .afficherArticle {
-    width: 800px;
+    width: 850px;
     float: left;
     text-align: left;
     padding: 0 10px;
 }
 .afficherArticle fieldset {
     text-align: left;
+    border: solid black 1px;
+}
+.afficherArticle p {
+    text-align: justify;
+}
+.nomVipArticle {
+    float: right;
+}
+.bandeauInfo {
+    background-color: lightgray;
+    padding: 2px 5px;
+}
+.bandeauInfo span:last-child {
+    float: right;
+}
+
+/* Page albumListe.handlebars */
+.monAlbumVip {
+    width: 330px;
+    padding: 10px 15px;
+    border: solid black 1px;
+    float: right;
+}
+.monAlbumVip img {
+    height: 100px;
+    width: 75px;
+    padding: 0 2px;
+}
+
+/* Page listerAlbum.handlebars */
+.afficherAlbumVip {
+    width: 825px;
+    float: left;
+    padding: 0 10px 10px 10px;
+    border: solid black 1px;
+}
+.afficherPhotoAlbumVip {
+    margin: auto;
+}
+.afficherPhotoAlbumVip img {
+    height: 150px;
+}
+.afficherCommentaireAlbumVip fieldset legend {
+    text-align: left;
+}
+.afficherCommentaireAlbumVip fieldset {
+    text-align: center;
     border: solid black 1px;
 }

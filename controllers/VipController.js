@@ -1,6 +1,7 @@
 let model = require("../models/vip.js");
 //let photo = require("../models/photo");
 let async = require("async");
+let moment = require("moment");
 
 // ///////////////////////// R E P E R T O I R E    D E S     S T A R S
 
@@ -94,6 +95,13 @@ module.exports.DetailsVip = function(request, response){
         response.mariageVip = result[5];
         response.photosVip = result[6];
 
+/*
+        moment.locale('fr');
+        let dateForm = moment((result[2][0].VIP_NAISSANCE)).format('LLLL'); // variable à modifier
+        let maDate = dateForm.substring(0, dateForm.length-5);
+
+        response.maDate = maDate;
+*/
         response.render('repertoireVipsDetails', response);
     }
 );

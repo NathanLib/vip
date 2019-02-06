@@ -19,15 +19,27 @@ module.exports.Menu = function(request, response){
 }
 
 module.exports.AfficherArticle = function(request, response){
-    response.title = 'Menu article';
+    response.title = 'Mes articles';
+    let nombre = request.params.number;
 
-    model.getArticle(function(err, result){
+    async.parallel([
+        function(callback) {
+            model.listVips(function(err, result) {callback(null, result)});
+        },
+
+        function(callback) {
+            model.getArticle(nombre, function(err, result) {callback(null, result)});
+        },
+    ],
+
+    function(err, result){
         if (err) {
             console.log(err);
             return;
         }
 
-        response.article = result;
-        response.render('afficherArticle', response);
+        response.liste = result[0];
+        response.article = result[1];
+        response.render('afficherArticles', response);
     } );
 }

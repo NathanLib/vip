@@ -1,11 +1,25 @@
+{{> articleListe}}
+
+{{#each article}}
 <div class="afficherArticle">
     <form class="" action="" method="">
         <fieldset>
             <legend>Article</legend>
 
-            <p>Choisir un vip pour voir les articles le concernant</p>
+            <p class="nomVipArticle">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</p>
+
+            <h4>{{this.ARTICLE_TITRE}}</h4>
+
+            <p>{{this.ARTICLE_RESUME}}</p>
+
+            <p class="bandeauInfo">
+                <span>[ajouté le {{formatDate this.ARTICLE_DATE_INSERT 'dddd D MMMM YYYY'}}]</span>
+                <span>
+                    <a href="/repertoire/vip/{{this.VIP_NUMERO}}">+ voir sa fiche</a>
+                </span>
+            </p>
+
         </fieldset>
     </form>
 </div>
-
-{{> articleListe}}
+{{/each}}

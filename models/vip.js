@@ -71,8 +71,10 @@ module.exports.getNationaliteVip = function(number,callback) {
 module.exports.getLiaisonVip = function(number,callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT l.VIP_NUMERO, l.DATE_EVENEMENT, l.LIAISON_MOTIFFIN, v.VIP_NOM, v.VIP_PRENOM FROM liaison l JOIN VIP v ON v.VIP_NUMERO=l.VIP_NUMERO WHERE l.VIP_VIP_NUMERO="+number+"";
-            sql = sql + " UNION SELECT l.VIP_VIP_NUMERO, l.DATE_EVENEMENT, l.LIAISON_MOTIFFIN,  v.VIP_NOM, v.VIP_PRENOM  FROM liaison l JOIN VIP v ON v.VIP_NUMERO=l.VIP_VIP_NUMERO WHERE l.VIP_NUMERO="+number+";"
+            let sql = "SELECT l.VIP_NUMERO, l.DATE_EVENEMENT, l.LIAISON_MOTIFFIN, v1.VIP_NOM, v1.VIP_PRENOM, v2.VIP_TEXTE, p.PHOTO_NUMERO, p.PHOTO_ADRESSE FROM liaison l";
+            sql = sql + " JOIN VIP v1 ON v1.VIP_NUMERO=l.VIP_NUMERO JOIN vip v2 ON l.VIP_NUMERO=v2.VIP_NUMERO JOIN photo p ON p.VIP_NUMERO=l.VIP_NUMERO WHERE l.VIP_VIP_NUMERO="+number+" AND p.PHOTO_NUMERO=1";
+            sql = sql + " UNION SELECT l.VIP_VIP_NUMERO, l.DATE_EVENEMENT, l.LIAISON_MOTIFFIN,  v1.VIP_NOM, v1.VIP_PRENOM, v2.VIP_TEXTE,  p.PHOTO_NUMERO, p.PHOTO_ADRESSE FROM liaison l";
+            sql = sql + " JOIN VIP v1 ON v1.VIP_NUMERO=l.VIP_VIP_NUMERO JOIN vip v2 ON l.VIP_VIP_NUMERO=v2.VIP_NUMERO JOIN photo p ON p.VIP_NUMERO=l.VIP_VIP_NUMERO WHERE l.VIP_NUMERO="+number+" AND p.PHOTO_NUMERO=1"
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
@@ -83,9 +85,12 @@ module.exports.getLiaisonVip = function(number,callback) {
 module.exports.getMariageVip = function(number,callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT m.VIP_NUMERO, m.DATE_EVENEMENT, m.MARIAGE_LIEU, m.MARIAGE_FIN, v.VIP_NOM, v.VIP_PRENOM FROM mariage m";
-            sql = sql + " JOIN VIP v ON v.VIP_NUMERO=m.VIP_NUMERO WHERE m.VIP_VIP_NUMERO="+number+"";
-            sql = sql + " UNION SELECT m.VIP_VIP_NUMERO, m.DATE_EVENEMENT, m.MARIAGE_LIEU, m.MARIAGE_FIN, v.VIP_NOM, v.VIP_PRENOM FROM mariage m"; sql = sql + " JOIN VIP v ON v.VIP_NUMERO=m.VIP_VIP_NUMERO WHERE m.VIP_NUMERO="+number+";"
+            let sql = "SELECT m.VIP_NUMERO, m.DATE_EVENEMENT, m.MARIAGE_LIEU, m.MARIAGE_FIN, v1.VIP_NOM, v1.VIP_PRENOM, v2.VIP_TEXTE, p.PHOTO_NUMERO, p.PHOTO_ADRESSE FROM mariage m";
+            sql = sql + " JOIN VIP v1 ON v1.VIP_NUMERO=m.VIP_NUMERO JOIN vip v2 ON m.VIP_NUMERO=v2.VIP_NUMERO JOIN photo p ON p.VIP_NUMERO=m.VIP_NUMERO";
+            sql = sql + " WHERE m.VIP_VIP_NUMERO="+number+" AND p.PHOTO_NUMERO=1";
+            sql = sql + " UNION SELECT m.VIP_VIP_NUMERO, m.DATE_EVENEMENT, m.MARIAGE_LIEU, m.MARIAGE_FIN,  v1.VIP_NOM, v1.VIP_PRENOM, v2.VIP_TEXTE,  p.PHOTO_NUMERO, p.PHOTO_ADRESSE FROM mariage m";
+            sql = sql + " JOIN VIP v1 ON v1.VIP_NUMERO=m.VIP_VIP_NUMERO JOIN vip v2 ON m.VIP_VIP_NUMERO=v2.VIP_NUMERO JOIN photo p";
+            sql = sql + " ON p.VIP_NUMERO=m.VIP_VIP_NUMERO WHERE m.VIP_NUMERO="+number+" AND p.PHOTO_NUMERO=1";
             //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();

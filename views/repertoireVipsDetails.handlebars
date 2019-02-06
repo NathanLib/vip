@@ -9,7 +9,7 @@
     </p>
     <p>
         <b>Date de naissance :</b>
-        {{identityDetailsVip.VIP_NAISSANCE}}
+        {{formatDate identityDetailsVip.VIP_NAISSANCE 'dddd D MMMM YYYY'}}
     </p>
     <p>
         <b>Nationalité :</b>
@@ -19,7 +19,16 @@
     {{#each mariageVip}}
     <p>
         <b>Mariage :</b>
-        {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+        <a class="tooltip" href="">
+            {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+
+            <span>
+                <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="photo">
+                <b>{{this.VIP_PRENOM}} {{this.VIP_NOM}}</b><br>
+                {{this.VIP_TEXTE}}
+            </span>
+        </a>
+
         ({{this.DATE_EVENEMENT}}{{#if this.MARIAGE_FIN}} --> {{this.MARIAGE_FIN}} {{/if}})
         <b>Lieu :</b>
         {{this.MARIAGE_LIEU}}
@@ -29,7 +38,16 @@
     {{#each liaisonVip}}
     <p>
         <b>Liaison :</b>
-        {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+        <a class="tooltip" href="">
+            {{this.VIP_PRENOM}} {{this.VIP_NOM}}
+
+            <span>
+                <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="photo">
+                <b>{{this.VIP_PRENOM}} {{this.VIP_NOM}}</b><br>
+                {{this.VIP_TEXTE}}
+            </span>
+        </a>
+
         ({{this.DATE_EVENEMENT}})
         <b>Raison fin liaison :</b>
         {{this.LIAISON_MOTIFFIN}}
