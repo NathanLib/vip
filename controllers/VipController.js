@@ -77,6 +77,26 @@ module.exports.DetailsVip = function(request, response){
 
         function(callback) {
             model.getAllPhotosVip(nombre, function(err, result) {callback(null, result)});
+        },
+
+        function(callback) {
+            model.getInfos_realisateur(nombre, function(err, result) {callback(null, result)});
+        },
+
+        function(callback) {
+            model.getInfos_mannequin(nombre, function(err, result) {callback(null, result)});
+        },
+
+        function(callback) {
+            model.getInfos_chanteur(nombre, function(err, result) {callback(null, result)});
+        },
+
+        function(callback) {
+            model.getInfos_couturier(nombre, function(err, result) {callback(null, result)});
+        },
+
+        function(callback) {
+            model.getInfos_acteur(nombre, function(err, result) {callback(null, result)});
         }
 
     ],
@@ -94,6 +114,11 @@ module.exports.DetailsVip = function(request, response){
         response.liaisonVip = result[4];
         response.mariageVip = result[5];
         response.photosVip = result[6];
+        response.realisateur = result[7];
+        response.mannequin = result[8];
+        response.chanteur = result[9];
+        response.couturier = result[10];
+        response.acteur = result[11];
 
 /*
         moment.locale('fr');

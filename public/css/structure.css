@@ -106,6 +106,8 @@ a  {
 {
   float:left;
   margin:0px 8px 8px 0;
+  height: 100px;
+  width: auto;
 }
 
 
@@ -118,7 +120,7 @@ a  {
   z-index:1000;
   width:auto;
   min-width:700px;
-  min-height:128px;
+  max-height:124px;
   border:1px solid black;
   margin-top:12px;
   margin-left:32px;
