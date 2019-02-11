@@ -23,7 +23,7 @@ module.exports = function(app){
 
     // albums
     app.get('/album', AlbumController.ListerAlbum);
-    app.get('/album/:number', AlbumController.AfficherAlbumDetail);
+    app.get('/album/:number/:photo', AlbumController.AfficherAlbumDetail);
 
     // Articles
     app.get('/articles', ArticleController.Menu);

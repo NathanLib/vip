@@ -2,12 +2,25 @@
 
 {{> albumListe}}
 
-{{#each details}}
 <div class="afficherAlbumVip">
-    <div class="afficherPhotoAlbumVip">
-        <p>{{this.VIP_PRENOM}} {{this.VIP_NOM}}</p>
+    <div class="afficherAlbumVipCarousel">
+        <div class="btnPrevious">
+            <a id="previous" href="#">
+                <<
+            </a>
+        </div>
+        <div class="afficherPhotoAlbumVip">
+            <p>{{details.0.prenom}} {{details.0.nom}}</p>
 
-        <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo du vip">
+            <img src="/images/vip/{{details.0.src}}" alt="Photo du vip">
+        </div>
+        {{#ifCond details.0.numeroPhoto '<' details.0.compteur}}
+        <div class="btnNext">
+            <a id="next" href="/album/{{this.numero}}/">
+                >>
+            </a>
+        </div>
+		{{/ifCond}}
     </div>
 
     <div class="afficherCommentaireAlbumVip">
@@ -15,9 +28,20 @@
             <fieldset>
                 <legend>Commentaire</legend>
 
-                <p>{{this.PHOTO_COMMENTAIRE}}</p>
+                <p>{{details.0.com}}</p>
             </fieldset>
         </form>
     </div>
 </div>
-{{/each}}
+
+
+<!-- A mettre dans un fichier script externe -->
+<script type="text/javascript">
+	var numero = parseInt(window.location.pathname.split('/')[3]);
+	if(numero-1 === 0){
+		document.getElementById("previous").style.display = "none";
+	}
+	document.getElementById('previous').href="/album/"+window.location.pathname.split('/')[2]+"/"+(numero-1);
+	if(document.getElementById('next') != undefined)
+		document.getElementById('next').href="/album/"+window.location.pathname.split('/')[2]+"/"+(numero+1);
+</script>

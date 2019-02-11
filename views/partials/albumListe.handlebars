@@ -1,7 +1,26 @@
 <div class="monAlbumVip">
         {{#each album}}
-                <a href="/album/{{this.VIP_NUMERO}}">
+                <a href="/album/{{this.VIP_NUMERO}}/1">
                     <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo officiel vip">
                 </a>
         {{/each}}
+
+        <div class="boutonNavigationAlbum">
+            <div class="boutonNavigationAlbumGauche">
+                <div class="btnDebut">
+                    <a href="#">Début</a>
+                </div>
+                <div class="btnPrecedent">
+                    <a href="#">Précédent</a>
+                </div>
+            </div>
+            <div class="boutonNavigationAlbumDroit">
+                <div class="btnSuivant">
+                    <a href="#">Suivant</a>
+                </div>
+                <div class="btnFin">
+                    <a href="#">Fin</a>
+                </div>
+            </div>
+        </div>
 </div>

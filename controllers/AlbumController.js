@@ -22,6 +22,7 @@ module.exports.ListerAlbum = function(request, response){
 module.exports.AfficherAlbumDetail = function(request, response){
     response.title = 'Mes articles';
     let nombre = request.params.number;
+    let numeroPhoto = request.params.photo;
 
     async.parallel([
         function(callback) {
@@ -29,7 +30,7 @@ module.exports.AfficherAlbumDetail = function(request, response){
         },
 
         function(callback) {
-            model.getAlbumDetail(nombre, function(err, result) {callback(null, result)});
+            model.getAlbumDetail(nombre,numeroPhoto, function(err, result) {callback(null, result)});
         },
     ],
 
@@ -41,6 +42,8 @@ module.exports.AfficherAlbumDetail = function(request, response){
 
         response.album = result[0];
         response.details = result[1];
+
+        console.log(response.details);
         response.render('afficherAlbumVip', response);
     } );
 }
