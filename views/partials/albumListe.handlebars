@@ -1,31 +1,96 @@
 <div class="monAlbumVip">
-        {{#each album}}
-                <a href="/album/{{this.VIP_NUMERO}}/1">
-                    <img id="imgVipAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo officiel vip">
-                </a>
-        {{/each}}
+    {{#each album}}
+    <div id="star{{inc @index}}" class="divImgVipAlbum">
+        <a  href="/album/{{this.VIP_NUMERO}}/1">
+            <img id="imgVipAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo officiel vip">
+        </a>
+    </div>
+    {{/each}}
 
-        <div class="boutonNavigationAlbum">
-            <div class="boutonNavigationAlbumGauche">
-                <div class="btnDebut">
-                    <a href="#">Début</a>
-                </div>
-                <div class="btnPrecedent">
-                    <a href="#">Précédent</a>
-                </div>
+    <div class="boutonNavigationAlbum">
+        <div class="boutonNavigationAlbumGauche">
+            <div id="debut" class="btnDebut">
+                <a onclick="pageUn()">Début</a>
             </div>
-            <div class="boutonNavigationAlbumDroit">
-                <div class="btnSuivant">
-                    <a href="#">Suivant</a>
-                </div>
-                <div class="btnFin">
-                    <a href="#">Fin</a>
-                </div>
+            <div id="precedent" class="btnPrecedent">
+                <a onclick="pagePrecedente()">Précédent</a>
             </div>
         </div>
+        <div class="boutonNavigationAlbumDroit">
+            <div id="suivant" class="btnSuivant">
+                <a onclick="pageSuivante()">Suivant</a>
+            </div>
+            <div id="fin" class="btnFin">
+                <a onclick="pageMax()">Fin</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script>
- var decodedJson = decodeURIComponent("{{{encodedJson}}}");
- var jsonObj = JSON.parse(decodedJson);
+<script type="text/javascript">
+
+var page = 1;
+var decodedJson = decodeURIComponent("{{{encodedJson}}}");
+jsonObj = JSON.parse(decodedJson);
+var maxPage = Math.floor(jsonObj.length / 12)+1;
+afficherPage(page,jsonObj);
+
+
+function afficherPage(page,jsonObj) {
+
+    for (var i = 1; i <= jsonObj.length; i++) {
+        document.getElementById("star"+i).style.display = "inline-block";
+    }
+
+    for (var i = 1; i <= (page-1)*12 ; i++) { //supprime les photos avant
+        document.getElementById("star"+i).style.display = "none";
+    }
+
+    for (var i = 12*page+1; i<= jsonObj.length; i++) { // supprime après
+        document.getElementById("star"+i).style.display = "none";
+    }
+
+    if(page === 1) {
+		document.getElementById("debut").style.display = "none";
+		document.getElementById("precedent").style.display = "none";
+		document.getElementById("fin").style.display = "block";
+		document.getElementById("suivant").style.display = "block";
+	}
+
+	if (page === maxPage){
+		document.getElementById("fin").style.display = "none";
+		document.getElementById("suivant").style.display = "none";
+		document.getElementById("debut").style.display = "block";
+		document.getElementById("precedent").style.display = "block";
+	}
+
+	if(page != maxPage && page != 1) {
+		document.getElementById("debut").style.display = "block";
+		document.getElementById("precedent").style.display = "block";
+		document.getElementById("fin").style.display = "block";
+		document.getElementById("suivant").style.display = "block";
+	}
+}
+
+function pageUn(){
+    page = 1;
+    afficherPage(page,jsonObj);
+};
+
+function pagePrecedente(){
+    if(page!=1)
+    page = page - 1;
+    afficherPage(page,jsonObj);
+};
+
+function pageSuivante(){
+    if(page!=maxPage)
+    page = page + 1;
+    afficherPage(page,jsonObj);
+};
+
+function pageMax(){
+    page = maxPage;
+    afficherPage(page,jsonObj);
+};;
 </script>

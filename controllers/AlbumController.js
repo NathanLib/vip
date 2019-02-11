@@ -47,6 +47,9 @@ module.exports.AfficherAlbumDetail = function(request, response){
         response.album = result[0];
         response.details = result[1];
 
+        encodedJson = encodeURIComponent(JSON.stringify(result[0]));
+        response. encodedJson = encodedJson
+
         response.render('afficherAlbumVip', response);
     } );
 }

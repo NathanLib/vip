@@ -224,6 +224,9 @@ ul#listFirstLetter li {
     border: solid black 1px;
     float: right;
 }
+.divImgVipAlbum {
+    display: flex;
+}
 .monAlbumVip img {
     height: 100px;
     width: 75px;
@@ -271,7 +274,6 @@ ul#listFirstLetter li {
     padding: 5px 10px;
     width: auto;
     height: 20px;
-    border: solid black 1px;
 }
 .afficherAlbumVipCarousel {
     display: flex;
