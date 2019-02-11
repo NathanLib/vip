@@ -22,7 +22,7 @@ module.exports.getAlbumDetail = function(number,numeroPhoto,callback) {
             sql = sql + " ON v.vip_NUMERO=p.VIP_NUMERO WHERE v.VIP_NUMERO="+ number +" AND PHOTO_NUMERO="+ numeroPhoto;
             sql = sql + " ORDER BY VIP_NOM)T JOIN photo p WHERE p.VIP_NUMERO="+ number +";";
 
-            console.log(sql);
+            //console.log(sql);
             connexion.query(sql, callback);
             connexion.release();
         }

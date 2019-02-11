@@ -14,6 +14,10 @@ module.exports.ListerAlbum = function(request, response){
         }
 
         response.album = result;
+
+        encodedJson = encodeURIComponent(JSON.stringify(result));
+        response.encodedJson = encodedJson;
+
         response.render('listerAlbum', response);
     } );
 
@@ -43,7 +47,6 @@ module.exports.AfficherAlbumDetail = function(request, response){
         response.album = result[0];
         response.details = result[1];
 
-        console.log(response.details);
         response.render('afficherAlbumVip', response);
     } );
 }

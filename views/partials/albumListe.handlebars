@@ -1,7 +1,7 @@
 <div class="monAlbumVip">
         {{#each album}}
                 <a href="/album/{{this.VIP_NUMERO}}/1">
-                    <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo officiel vip">
+                    <img id="imgVipAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo officiel vip">
                 </a>
         {{/each}}
 
@@ -24,3 +24,8 @@
             </div>
         </div>
 </div>
+
+<script>
+ var decodedJson = decodeURIComponent("{{{encodedJson}}}");
+ var jsonObj = JSON.parse(decodedJson);
+</script>
