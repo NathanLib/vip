@@ -9,9 +9,6 @@ let TestController = require('./../controllers/TestController');
 // Routes
 module.exports = function(app){
 
-    // tests à supprimer
-    app.get('/test', TestController.Test);
-
     // Main Routes
     app.get('/', HomeController.Index);
     app.get('/accueil', HomeController.Index);

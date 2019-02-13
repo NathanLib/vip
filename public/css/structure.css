@@ -247,6 +247,7 @@ ul#listFirstLetter li {
     border: solid black 1px;
     padding: 5px 10px;
     width: auto;
+    cursor: pointer;
 }
 
 /* Page afficherAlbumVip.handlebars */
