@@ -2,6 +2,7 @@
 
 {{> albumListe}}
 
+{{#if details.0.numeroPhoto }}
 <div class="afficherAlbumVip">
     <div class="afficherAlbumVipCarousel">
         <div class="btnPrevious">
@@ -20,7 +21,7 @@
                 >>
             </a>
         </div>
-		{{/ifCond}}
+        {{/ifCond}}
     </div>
 
     <div class="afficherCommentaireAlbumVip">
@@ -33,15 +34,17 @@
         </form>
     </div>
 </div>
-
+{{else}}
+<meta http-equiv="refresh" content="0;url=/album">
+{{/if}}
 
 <!-- A mettre dans un fichier script externe -->
 <script type="text/javascript">
-	var numero = parseInt(window.location.pathname.split('/')[3]);
-	if(numero-1 === 0){
-		document.getElementById("previous").style.display = "none";
-	}
-	document.getElementById('previous').href="/album/"+window.location.pathname.split('/')[2]+"/"+(numero-1);
-	if(document.getElementById('next') != undefined)
-		document.getElementById('next').href="/album/"+window.location.pathname.split('/')[2]+"/"+(numero+1);
+var numero = parseInt(window.location.pathname.split('/')[3]);
+if(numero-1 === 0){
+    document.getElementById("previous").style.display = "none";
+}
+document.getElementById('previous').href="/album/"+window.location.pathname.split('/')[2]+"/"+(numero-1);
+if(document.getElementById('next') != undefined)
+document.getElementById('next').href="/album/"+window.location.pathname.split('/')[2]+"/"+(numero+1);
 </script>

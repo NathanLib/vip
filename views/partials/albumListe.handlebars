@@ -10,18 +10,18 @@
     <div class="boutonNavigationAlbum">
         <div class="boutonNavigationAlbumGauche">
             <div id="debut" class="btnDebut">
-                <a onclick="pageUn()">Début</a>
+                <a onclick="pageOne()">Début</a>
             </div>
             <div id="precedent" class="btnPrecedent">
-                <a onclick="pagePrecedente()">Précédent</a>
+                <a onclick="pagePrevious()">Précédent</a>
             </div>
         </div>
         <div class="boutonNavigationAlbumDroit">
             <div id="suivant" class="btnSuivant">
-                <a onclick="pageSuivante()">Suivant</a>
+                <a onclick="pageNext()">Suivant</a>
             </div>
             <div id="fin" class="btnFin">
-                <a onclick="pageMax()">Fin</a>
+                <a onclick="pageLast()">Fin</a>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
 var page = 1;
 var decodedJson = decodeURIComponent("{{{encodedJson}}}");
 jsonObj = JSON.parse(decodedJson);
-var maxPage = Math.floor(jsonObj.length / 12)+1;
+var lastPage = Math.floor(jsonObj.length / 12)+1;
 afficherPage(page,jsonObj);
 
 
@@ -57,14 +57,14 @@ function afficherPage(page,jsonObj) {
 		document.getElementById("suivant").style.display = "block";
 	}
 
-	if (page === maxPage){
+	if (page === lastPage){
 		document.getElementById("fin").style.display = "none";
 		document.getElementById("suivant").style.display = "none";
 		document.getElementById("debut").style.display = "block";
 		document.getElementById("precedent").style.display = "block";
 	}
 
-	if(page != maxPage && page != 1) {
+	if(page != lastPage && page != 1) {
 		document.getElementById("debut").style.display = "block";
 		document.getElementById("precedent").style.display = "block";
 		document.getElementById("fin").style.display = "block";
@@ -72,25 +72,25 @@ function afficherPage(page,jsonObj) {
 	}
 }
 
-function pageUn(){
+function pageOne(){
     page = 1;
     afficherPage(page,jsonObj);
 };
 
-function pagePrecedente(){
+function pagePrevious(){
     if(page!=1)
     page = page - 1;
     afficherPage(page,jsonObj);
 };
 
-function pageSuivante(){
-    if(page!=maxPage)
+function pageNext(){
+    if(page!=lastPage)
     page = page + 1;
     afficherPage(page,jsonObj);
 };
 
-function pageMax(){
-    page = maxPage;
+function pageLast(){
+    page = lastPage;
     afficherPage(page,jsonObj);
 };;
 </script>

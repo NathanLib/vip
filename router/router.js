@@ -2,7 +2,6 @@ let HomeController = require('./../controllers/HomeController');
 let VipController = require('./../controllers/VipController');
 let AlbumController = require('./../controllers/AlbumController');
 let ArticleController = require('./../controllers/ArticleController');
-let TestController = require('./../controllers/TestController');
 
 
 
