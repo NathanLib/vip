@@ -2,7 +2,7 @@
     {{#each album}}
     <div id="star{{inc @index}}" class="divImgVipAlbum">
         <a  href="/album/{{this.VIP_NUMERO}}/1">
-            <img id="imgVipAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="Photo officiel vip">
+            <img id="imgVipAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}" title="Vip n°{{this.VIP_NUMERO}}" alt="Photo officiel vip">
         </a>
     </div>
     {{/each}}
@@ -32,14 +32,24 @@
 var page = 1;
 var decodedJson = decodeURIComponent("{{{encodedJson}}}");
 jsonObj = JSON.parse(decodedJson);
-var lastPage = Math.floor(jsonObj.length / 12)+1;
-afficherPage(page,jsonObj);
+var maxPage = Math.floor(jsonObj.length / 12)+1;
+afficherPage(page,jsonObj,false);
 
 
-function afficherPage(page,jsonObj) {
+function afficherPage(page,jsonObj,pageChange) {
 
     for (var i = 1; i <= jsonObj.length; i++) {
         document.getElementById("star"+i).style.display = "inline-block";
+        document.getElementById("star"+i).style.opacity = 0.5;
+    }
+    var numero = parseInt(window.location.pathname.split('/')[2]);
+    for (var i = 0; i < jsonObj.length; i++) {
+        if(jsonObj[i].VIP_NUMERO == numero){
+            var id = i+1;
+            document.getElementById("star"+id).style.opacity = 1;
+            if(!pageChange)
+            page = Math.ceil(id / 12);
+        }
     }
 
     for (var i = 1; i <= (page-1)*12 ; i++) { //supprime les photos avant
@@ -51,46 +61,46 @@ function afficherPage(page,jsonObj) {
     }
 
     if(page === 1) {
-		document.getElementById("debut").style.display = "none";
-		document.getElementById("precedent").style.display = "none";
-		document.getElementById("fin").style.display = "block";
-		document.getElementById("suivant").style.display = "block";
-	}
+        document.getElementById("debut").style.display = "none";
+        document.getElementById("precedent").style.display = "none";
+        document.getElementById("fin").style.display = "inline-flex";
+        document.getElementById("suivant").style.display = "inline-flex";
+    }
 
-	if (page === lastPage){
-		document.getElementById("fin").style.display = "none";
-		document.getElementById("suivant").style.display = "none";
-		document.getElementById("debut").style.display = "block";
-		document.getElementById("precedent").style.display = "block";
-	}
+    if (page === maxPage){
+        document.getElementById("fin").style.display = "none";
+        document.getElementById("suivant").style.display = "none";
+        document.getElementById("debut").style.display = "block";
+        document.getElementById("precedent").style.display = "block";
+    }
 
-	if(page != lastPage && page != 1) {
-		document.getElementById("debut").style.display = "block";
-		document.getElementById("precedent").style.display = "block";
-		document.getElementById("fin").style.display = "block";
-		document.getElementById("suivant").style.display = "block";
-	}
+    if(page != maxPage && page != 1) {
+        document.getElementById("debut").style.display = "inline-flex";
+        document.getElementById("precedent").style.display = "inline-flex";
+        document.getElementById("fin").style.display = "inline-flex";
+        document.getElementById("suivant").style.display = "inline-flex";
+    }
 }
 
 function pageOne(){
     page = 1;
-    afficherPage(page,jsonObj);
+    afficherPage(page,jsonObj,true);
 };
 
 function pagePrevious(){
     if(page!=1)
     page = page - 1;
-    afficherPage(page,jsonObj);
+    afficherPage(page,jsonObj,true);
 };
 
 function pageNext(){
-    if(page!=lastPage)
+    if(page!=maxPage)
     page = page + 1;
-    afficherPage(page,jsonObj);
+    afficherPage(page,jsonObj,true);
 };
 
 function pageLast(){
-    page = lastPage;
-    afficherPage(page,jsonObj);
+    page = maxPage;
+    afficherPage(page,jsonObj,true);
 };;
 </script>
