@@ -1,5 +1,5 @@
 # S I X V O I X
-=======
+======= <br/>
 Structure de base pour l'application SixVoix de l'IUT en Node.js.<br />
 Le fichier vip.sql vous permettra de créer votre base vip.<br />
 Vous aurez aussi un jeu d'essai (réaliste mais pas exact).<br />
